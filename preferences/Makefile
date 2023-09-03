@@ -1,4 +1,4 @@
-TARGET = iphone:13.3:12.0
+TARGET = iphone:clang:13.7:15:0
 
 export GO_EASY_ON_ME=1
 
