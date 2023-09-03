@@ -133,7 +133,7 @@ static void loadChusmaSettings(CFNotificationCenterRef center, void *observer, C
     	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), 
                                     NULL,
                                     loadChusmaSettings, 
-                                    CFSTR("com.itaysoft.chusma/ReloadPrefs"), 
+                                    CFSTR("com.kalyuta.chusmareborn/ReloadPrefs"), 
                                     NULL, 
                                     CFNotificationSuspensionBehaviorCoalesce);
 	}
