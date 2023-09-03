@@ -2,7 +2,7 @@
 
 @class BBSectionInfo;
 
-@interface ChusmaBulletinProvider : BBDataProvider <BBDataProvider>
+@interface ChusmaRBulletinProvider : BBDataProvider <BBDataProvider>
 + (instancetype)sharedInstance;
 - (void)showBulletin:(BOOL)isFriend;
 - (BBSectionInfo *)sectionInfo;
