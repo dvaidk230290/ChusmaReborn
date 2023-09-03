@@ -24,7 +24,7 @@ struct SBIconImageInfo {
 -(id)generateIconImageWithInfo:(struct SBIconImageInfo)arg1;
 @end
 
-static NSString *kChusmaSectionIdentifier = @"com.itaysoft.chusma.app";
+static NSString *kChusmaSectionIdentifier = @"com.kalyuta.chusma.app";
 static NSString *kFindMyiPhoneBundle = @"com.apple.findmy";
 
 @implementation ChusmaBulletinProvider
