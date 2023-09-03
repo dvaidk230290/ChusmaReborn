@@ -1,4 +1,4 @@
-#import "ChusmaBulletinProvider.h"
+#import "ChusmaRebornBulletinProvider.h"
 #import <BulletinBoard/BBDataProviderIdentity.h>
 #import <BulletinBoard/BBSectionInfo.h>
 #import <BulletinBoard/BBSectionIcon.h>
@@ -24,7 +24,7 @@ struct SBIconImageInfo {
 -(id)generateIconImageWithInfo:(struct SBIconImageInfo)arg1;
 @end
 
-static NSString *kChusmaSectionIdentifier = @"com.kalyuta.chusma.app";
+static NSString *kChusmaSectionIdentifier = @"com.kalyuta.chusmareborn.app";
 static NSString *kFindMyiPhoneBundle = @"com.apple.findmy";
 
 @implementation ChusmaBulletinProvider
@@ -45,7 +45,7 @@ static NSString *kFindMyiPhoneBundle = @"com.apple.findmy";
 		BBDataProviderIdentity *identity = [BBDataProviderIdentity identityForDataProvider:self];
 
 		identity.sectionIdentifier = kChusmaSectionIdentifier;
-		identity.sectionDisplayName = @"Chusma";
+		identity.sectionDisplayName = @"ChusmaR";
 		identity.sortKey = @"date";
 		identity.defaultSectionInfo = [self sectionInfo];
 		identity.defaultSectionInfo.pushSettings = BBSectionInfoPushSettingsAlerts | BBSectionInfoPushSettingsSounds;
