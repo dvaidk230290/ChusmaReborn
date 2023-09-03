@@ -27,9 +27,9 @@ struct SBIconImageInfo {
 static NSString *kChusmaSectionIdentifier = @"com.kalyuta.chusmareborn.app";
 static NSString *kFindMyiPhoneBundle = @"com.apple.findmy";
 
-@implementation ChusmaBulletinProvider
+@implementation ChusmaRebornBulletinProvider
 + (instancetype)sharedInstance {
-	static ChusmaBulletinProvider *sharedInstance = nil;
+	static ChusmaRebornBulletinProvider *sharedInstance = nil;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
 		sharedInstance = [[self alloc] init];
@@ -45,7 +45,7 @@ static NSString *kFindMyiPhoneBundle = @"com.apple.findmy";
 		BBDataProviderIdentity *identity = [BBDataProviderIdentity identityForDataProvider:self];
 
 		identity.sectionIdentifier = kChusmaSectionIdentifier;
-		identity.sectionDisplayName = @"ChusmaR";
+		identity.sectionDisplayName = @"ChusmaReborn";
 		identity.sortKey = @"date";
 		identity.defaultSectionInfo = [self sectionInfo];
 		identity.defaultSectionInfo.pushSettings = BBSectionInfoPushSettingsAlerts | BBSectionInfoPushSettingsSounds;
@@ -62,7 +62,7 @@ static NSString *kFindMyiPhoneBundle = @"com.apple.findmy";
 	NSString *bulletinID = [NSString stringWithFormat:@"com.itaysoft.chusma-%@", [[NSUUID UUID] UUIDString]];
 
 	BBBulletinRequest *bulletin = [BBBulletinRequest new];
-    bulletin.title = @"Chusma";
+    bulletin.title = @"ChusmaReborn";
     bulletin.sectionID = kChusmaSectionIdentifier;
     bulletin.message = message;
 	bulletin.clearable = YES;
@@ -71,7 +71,7 @@ static NSString *kFindMyiPhoneBundle = @"com.apple.findmy";
 	bulletin.bulletinID = [NSUUID UUID].UUIDString;
 	bulletin.recordID = bulletinID;
     bulletin.publisherBulletinID = bulletinID;
-	bulletin.defaultAction = [%c(BBAction) actionWithLaunchURL:[NSURL URLWithString:@"prefs:root=Chusma"] callblock:nil];
+	bulletin.defaultAction = [%c(BBAction) actionWithLaunchURL:[NSURL URLWithString:@"prefs:root=ChusmaReborn"] callblock:nil];
     //bulletin.icon = [self sectionIcon];
 
 	BBDataProviderAddBulletin(self, bulletin);
