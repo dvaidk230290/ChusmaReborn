@@ -1,5 +1,4 @@
 #include <dlfcn.h>
-#import <rocketbootstrap/rocketbootstrap.h>
 #import <AppSupport/CPDistributedMessagingCenter.h>
 #import <BulletinBoard/BBServer.h>
 #import <BulletinBoard/BBLocalDataProviderStore.h>
@@ -7,7 +6,8 @@
 #import "substrate.h"
 #import "ChusmaBulletinProvider.h"
 
-static NSString *ChusmaServerName = @"com.itaysoft.chusma";
+static NSString *ChusmaServerName = @"com.kalyuta.chusmareborn";
+static NSString *NotificationName = [NSString stringWithFormat:@"%@.notification", ChusmaServerName];
 static BOOL chusmaEnabled = YES;
 static NSString *lastCommandId = @"";
 static NSDate *lastAlert = [[NSDate alloc] initWithTimeIntervalSince1970:0];
@@ -25,12 +25,7 @@ static NSDate *lastAlert = [[NSDate alloc] initWithTimeIntervalSince1970:0];
 	if(![commandId isEqualToString:lastCommandId] && [lastAlert timeIntervalSinceNow] < -60) {
 		lastCommandId = commandId;
 		lastAlert = [NSDate date];
-
-		CPDistributedMessagingCenter *center = [%c(CPDistributedMessagingCenter) centerNamed:ChusmaServerName];
-    	rocketbootstrap_distributedmessagingcenter_apply(center);
-		[center sendMessageName:@"showNotification" userInfo:@{
-			@"isFriends": @(0)
-		}];
+	    	[[NSNotificationCenter defaultCenter] postNotificationName:NotificationName object:nil userInfo:@{@"isFriends": @(0)}];
 	}
 
 	%orig;
@@ -63,12 +58,8 @@ static NSDate *lastAlert = [[NSDate alloc] initWithTimeIntervalSince1970:0];
 	if(![commandId isEqualToString:lastCommandId] && [lastAlert timeIntervalSinceNow] < -60) {
 		lastCommandId = commandId;
 		lastAlert = [NSDate date];
+	    	[[NSNotificationCenter defaultCenter] postNotificationName:NotificationName object:nil userInfo:@{@"isFriends": @(0)}];
 
-		CPDistributedMessagingCenter *center = [%c(CPDistributedMessagingCenter) centerNamed:ChusmaServerName];
-    	rocketbootstrap_distributedmessagingcenter_apply(center);
-		[center sendMessageName:@"showNotification" userInfo:@{
-			@"isFriends": @(1)
-		}];
 	}
 	
 	%orig;
@@ -85,10 +76,8 @@ static NSDate *lastAlert = [[NSDate alloc] initWithTimeIntervalSince1970:0];
 %hook SpringBoard
 
 -(void)applicationDidFinishLaunching:(id)arg1  {
-    CPDistributedMessagingCenter *center = [%c(CPDistributedMessagingCenter) centerNamed:ChusmaServerName];
-    rocketbootstrap_distributedmessagingcenter_apply(center);
-	[center runServerOnCurrentThread];
-    [center registerForMessageName:@"showNotification" target:self selector:@selector(_chusma_showNotification:userInfo:)];
+	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+	[notificationCenter addObserver:self selector:@selector(_chusma_showNotification:) name:NotificationName object:nil];
 	HBLogDebug(@"Chusma - Server Started");
 
 	%orig;
