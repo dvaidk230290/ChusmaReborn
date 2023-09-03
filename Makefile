@@ -12,7 +12,6 @@ TWEAK_NAME = Chusma
 Chusma_FILES = Tweak.xm ChusmaBulletinProvider.x
 Chusma_CFLAGS = -fobjc-arc
 Chusma_PRIVATE_FRAMEWORKS = AppSupport BulletinBoard
-Chusma_LIBRARIES = rocketbootstrap
 
 include $(THEOS_MAKE_PATH)/tweak.mk
 SUBPROJECTS += app
