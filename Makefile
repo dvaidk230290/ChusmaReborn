@@ -9,7 +9,7 @@ include $(THEOS)/makefiles/common.mk
 
 TWEAK_NAME = Chusma
 
-Chusma_FILES = Tweak.xm ChusmaBulletinProvider.x
+Chusma_FILES = Tweak.xm ChusmaRebornBulletinProvider.x
 Chusma_CFLAGS = -fobjc-arc
 Chusma_PRIVATE_FRAMEWORKS = AppSupport BulletinBoard
 
